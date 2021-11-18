@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- <link rel="stylesheet" href="index.css"> -->
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style/index.css') }}">
+</head>
+
+<body>
+  <div class="container">
+    <a href="/" class="tesseract text-center my-5">Tesseract OCR</a>
+    <div class="form">
+      <form method="post" action="/result" enctype="multipart/form-data">
+        <input class="choose__image" type="file" name="file" autocomplete="off" required>
+        <p>
+          <input class="input__submit mt-3" type="submit" value="Render">
+        </p>
+      </form>
+      <form method="post" action="/convert" enctype="multipart/form-data">
+        <h2>Convert PDF to Word</h2>
+        <input class="choose__image" type="file" name="pdf" autocomplete="off" required>
+        <p>
+          <input class="input__submit mt-3" type="submit" value="Convert">
+        </p>
+      </form>
+      <div class="alert">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <span>{{message}}</span>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+      </div>
+    </div>
+    <div class="content">
+      <div class="row">
+        <div class="col-5">
+          <h2 class="text-center">Image</h2>
+          <img style="width: 100%;" src="{{ url_for('display_image', filename=filename) }}">
+        </div>
+        <div class="col-7">
+          <h2 class="text-center">Content</h2>
+          <div class="content__text">
+            <form method="post" action="/pdf" enctype="multipart/form-data">
+              <button class="btn__submit__pdf" type="submit">Download as PDF</button>
+              <textarea type="text" class="p-3" name="content"
+                style="font-size: 16px; width: 100%;height: 650px;">{{text}}</textarea>
+            </form>
+            <!-- <form method="post" action="/word" enctype="multipart/form-data">
+              <button class="btn__submit__word" type="submit">Download as Word</button>
+              <textarea hidden class="p-3" name="content"
+                style="font-size: 16px; width: 100%;height: 500px;">{{text}}</textarea>
+            </form> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
+<script>
+  function previewFile() {
+    // Where you will display your image
+    var preview = document.querySelector('img');
+    // The button where the user chooses the local image to display
+    var file = document.querySelector('input[type=file]').files[0];
+    // FileReader instance
+    var reader = new FileReader();
+
+    // When the image is loaded we will set it as source of
+    // our img tag
+    reader.onloadend = function () {
+      preview.src = reader.result;
+    }
+
+
+    if (file) {
+      // Load image as a base64 encoded URI
+      reader.readAsDataURL(file);
+    } else {
+      preview.src = "";
+    }
+  }
+</script>
+
+</html>

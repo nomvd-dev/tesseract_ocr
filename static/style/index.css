@@ -1,0 +1,138 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.tesseract{
+    text-align: center;
+    font-size: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #000;
+    margin: 30px 0;
+}
+
+.tesseract:hover{
+    text-decoration: none;
+    color: #000;
+}
+
+.form{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.alert{
+    position: absolute;
+    top: -25px;
+    right: -110px;
+    width: 210px;
+}
+
+.alert span{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+@media (min-width: 1600px) {
+    .container{
+        max-width: 1500px;
+    }
+}
+.container .content .content__text {
+  width: 100%;
+  height: 650px;
+  border: 1px solid #000;
+  position: relative;
+}
+
+.choose__image {
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: 2px solid #376bb4;
+  color: #fff;
+  background-color: #376bb4;
+  border-radius: 5px;
+  transition: 0.25s all ease;
+}
+.choose__image:hover {
+  border: 2px solid #376bb4;
+  color: #376bb4;
+  background-color: #fff;
+  /* transform: translate(50, 0); */
+}
+
+.input__submit {
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: 2px solid #376bb4;
+  color: #fff;
+  background-color: #376bb4;
+  border-radius: 5px;
+  transition: 0.25s all ease;
+}
+.input__submit:hover {
+  border: 2px solid #376bb4;
+  color: #376bb4;
+  background-color: #fff;
+  /* transform: translate(50, 0); */
+}
+
+.container .content .content__text .btn__submit__pdf {
+  position: absolute;
+  top: 0;
+  right: -180px;
+  z-index: 100;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: 2px solid #aa0a00;
+  color: #fff;
+  background-color: #aa0a00;
+  border-radius: 5px;
+  transition: 0.25s all ease;
+  /* transform: translate(50, 0); */
+}
+
+.container .content .content__text .btn__submit__pdf:hover {
+  border: 2px solid #aa0a00;
+  color: #aa0a00;
+  background-color: #fff;
+  /* transform: translate(50, 0); */
+}
+
+.container .content .content__text .btn__submit__pdf:focus {
+  outline: none;
+}
+
+.container .content .content__text .btn__submit__word {
+  position: absolute;
+  top: 60px;
+  right: -191px;
+  z-index: 100;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: 2px solid #2a548f;
+  color: #fff;
+  background-color: #2a548f;
+  border-radius: 5px;
+  transition: 0.25s all ease;
+  /* transform: translate(50, 0); */
+}
+
+.container .content .content__text .btn__submit__word:hover {
+  border: 2px solid #2a548f;
+  color: #2a548f;
+  background-color: #fff;
+  /* transform: translate(50, 0); */
+}
+
+.container .content .content__text .btn__submit__word:focus {
+  outline: none;
+}
