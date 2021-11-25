@@ -37,6 +37,11 @@
     font-weight: 400;
 }
 
+.language{
+  font-size: 20px;
+  margin-top: 20px;
+}
+
 @media (min-width: 1600px) {
     .container{
         max-width: 1500px;

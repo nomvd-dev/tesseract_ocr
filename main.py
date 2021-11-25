@@ -21,7 +21,6 @@ def allowed_file(filename):
 def allowed_file_pdf(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS_PDF
 
-
 @app.route('/')
 def upload_form():
     filename = 'no_image.jpg'
@@ -66,8 +65,12 @@ def upload_image():
         # flash('Image successfully uploaded and displayed below')
         text = "text"
         # p = PATH + filename
-        text = text_scanner(p, 'Model\\east_text_detection.pb')
-        print(text)
+        isVie = False
+        option = request.form['options']
+        print(option)
+        if option == 'vie':
+            isVie = True
+        text = text_scanner(p, 'Model\\east_text_detection.pb', isVie)
         flash("Rendered !!!")
         return render_template('index.html', text=text, filename=filename)
     else:
@@ -280,7 +283,7 @@ def cheking_deskew(orig_cut):
         round(width))), flags=cv2.INTER_CUBIC, borderMode=cv2.BORDER_REPLICATE)
     return rotated, gray
 
-def text_scanner(img_path, east_model_path):
+def text_scanner(img_path, east_model_path, isVie):
     image = cv2.imread(img_path)
     orig = image.copy()
     (origH, origW) = image.shape[:2]
@@ -299,11 +302,14 @@ def text_scanner(img_path, east_model_path):
     startY_min = max(0, startY_min-15)
     startX_min = max(0, startX_min-15)
     endX_max = min(origW, endX_max+15)
-    endY_max = min(origW, endY_max+15)
+    endY_max = min(origH, endY_max+15)
     rotated, gray = cheking_deskew(
         orig[startY_min:endY_max, startX_min:endX_max])
     # cv2.imwrite('/content/drive/MyDrive/CS406 project/img/test.jpg',rotated)
-    text = pytesseract.image_to_string(rotated)
+    if isVie == True:
+        text = pytesseract.image_to_string(rotated, lang='vie')
+    else:
+        text = pytesseract.image_to_string(rotated)
     return text
 
 

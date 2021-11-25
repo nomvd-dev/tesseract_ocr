@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Title</title>
+  <title>CS406</title>
   <!-- <link rel="stylesheet" href="index.css"> -->
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -19,7 +19,11 @@
     <a href="/" class="tesseract text-center my-5">Tesseract OCR</a>
     <div class="form">
       <form method="post" action="/result" enctype="multipart/form-data">
-        <input class="choose__image" type="file" name="file" autocomplete="off" required>
+        <input class="choose__image" type="file" name="file" autocomplete="off" required><br>
+        <div class="language">
+          <input type="radio" name="options" id="eng" value="eng" checked> English </input><br>
+          <input type="radio" name="options" id="vie" value="vie"> Vietnamese </input><br>
+        </div>
         <p>
           <input class="input__submit mt-3" type="submit" value="Render">
         </p>
